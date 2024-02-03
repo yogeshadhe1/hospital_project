@@ -1,103 +1,3 @@
-<!-- templates/login.html -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Varad Hospital</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        form {
-            max-width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            /* Full width button */
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li.error {
-            color: #d9534f;
-        }
-
-        /* Button container */
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        /* Check All Saved Details Button Style */
-        .check-details-button {
-            background-color: #28a745;
-            color: #fff;
-            text-align: center;
-            padding: 5px 10px;
-            /* Adjusted padding for a smaller size */
-            text-decoration: none;
-            border-radius: 5px;
-            width: 48%;
-            /* Adjusted width for two buttons in one line with a small gap */
-        }
-
-        /* Logout button style */
-        .logout-button {
-            background-color: #d9534f;
-            color: #fff;
-            text-align: center;
-            padding: 5px 10px;
-            /* Adjusted padding for a smaller size */
-            text-decoration: none;
-            border-radius: 5px;
-            width: 48%;
-            /* Adjusted width for two buttons in one line with a small gap */
-        }
-    </style>
-</head>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,7 +31,7 @@
         .screen {
             background: linear-gradient(90deg, #5D54A4, #7C78B8);
             position: relative;
-            height: 600px;
+            height: 460px;
             width: 360px;
             box-shadow: 0px 0px 24px #5C5696;
         }
@@ -197,7 +97,17 @@
         .login {
             width: 320px;
             padding: 30px;
-            padding-top: 156px;
+            padding-top: 45px;
+        }
+
+        .login div h1 {
+            color: #635ca1;
+            font-size: 28px;
+        }
+
+        .login div h3 {
+            color: #635ca1;
+            font-size: 14px;
         }
 
         .login__field {
@@ -323,6 +233,11 @@
         <div class="screen">
             <div class="screen__content">
                 <form class="login" method="post" action="{{ url_for('login') }}">
+                    <div>
+                        <h1>VARAD HOSPITAL </h1>
+                        <h3>RAMNAGAR JALNA </h3>
+                                  
+                    </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
                         <input type="text" class="login__input" name="username" placeholder="Username / Email" required>
@@ -336,14 +251,6 @@
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
                 </form>
-                <div class="social-login">
-                    <h3>log in via</h3>
-                    <div class="social-icons">
-                        <a href="#" class="social-login__icon fab fa-instagram"></a>
-                        <a href="#" class="social-login__icon fab fa-facebook"></a>
-                        <a href="#" class="social-login__icon fab fa-twitter"></a>
-                    </div>
-                </div>
             </div>
             <div class="screen__background">
                 <span class="screen__background__shape screen__background__shape4"></span>
@@ -353,43 +260,6 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
-
-<body>
-    <header>
-        <h1>VARAD HOSPITAL RAMNAGAR jalna</h1>
-    </header>
-
-    <form method="post" action="{{ url_for('login') }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <input type="submit" value="Login">
-    </form>
-
-    <!-- Button container -->
-    <div class="button-container">
-        <!-- Check All Saved Details Button -->
-        <a href="{{ url_for('all_patients') }}" class="check-details-button">Check All Saved Details</a>
-
-        <!-- Logout button -->
-        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
-    </div>
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <ul>
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
 </body>
 
 </html>
