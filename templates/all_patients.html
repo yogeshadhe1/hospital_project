@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Patients - Varad Hospital</title>
+    <!-- Add your CSS styles here -->
+</head>
+<body>
+    <h1>All Patients</h1>
+
+    <!-- Display patient details in table format -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Symptoms</th>
+                <th>Medicine Details</th>
+                <th>Follow-up Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient[0] }}</td>       <!-- ID -->
+                    <td>{{ patient[1] }}</td>       <!-- Name -->
+                    <td>{{ patient[2] }}</td>       <!-- Age -->
+                    <td>{{ patient[4] }}</td>       <!-- Gender -->
+                    <td>{{ patient[5] }}</td>       <!-- Address -->
+                    <td>{{ patient[6] }}</td>       <!-- Symptoms -->
+                    <td>{{ patient[7] }}</td>       <!-- Medicine Details -->
+                    <td>{{ patient[8] }}</td>       <!-- Follow-up Date -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Download patient details as Excel button -->
+    <a href="{{ url_for('download_excel_date_range', start_date=start_date, end_date=end_date) }}" download="patient_details.xlsx">
+        <button>Download Patient Details (Excel)</button>
+    </a>
+
+    <!-- Download patient details as Excel with date range button -->
+    <a href="{{ url_for('download_excel_date_range', start_date='2023-01-01', end_date='2023-12-31') }}" download="patient_details_date_range.xlsx">
+        <button>Download Patient Details (Excel) - Date Range</button>
+    </a>
+
+    <!-- Back button to go to patient_details page -->
+    <a href="{{ url_for('patient_details') }}">
+        <button>Back to Patient Details</button>
+    </a>
+
+    <!-- Back to home page button -->
+    <a href="{{ url_for('back_to_home') }}">
+        <button>Back to Home</button>
+    </a>
+
+    <!-- Add additional styling or content as needed -->
+
+</body>
+</html>

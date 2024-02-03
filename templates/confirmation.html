@@ -1,0 +1,18 @@
+<!-- templates/confirmation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation - Varad Hospital</title>
+</head>
+<body>
+    <h1>Confirmation</h1>
+    <p>Thank you for submitting the patient details.</p>
+    <p>Patient Name: {{ patient_name }}</p>
+    <!-- Add more details as needed -->
+
+    <!-- Back button to go back to the patient details form -->
+    <a href="{{ url_for('patient_details') }}">Back</a>
+</body>
+</html>
