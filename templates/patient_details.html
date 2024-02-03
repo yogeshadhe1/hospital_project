@@ -1,141 +1,294 @@
-<!-- templates/patient_details.html -->
 <!DOCTYPE html>
-<html lang="en">
+<!-- Designined by CodingLab - youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Details - Varad Hospital</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
             height: 100vh;
-        }
-
-        header {
-            background: url('file:///D:/hospital_management_system/logo_dr_pt.jpg') center/cover;
-            padding: 10px;
-            text-align: center;
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-            height: 200px; /* Adjust as needed */
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            padding: 10px;
+            /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
         }
 
-        form {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background-color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .container .title {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .container .title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 30px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
             margin-top: 20px;
         }
 
-        label {
+        form .user-details .input-box {
+            margin-bottom: 10px;
+            width: calc(100% / 2 - 20px);
+        }
+
+        form .input-box span.details {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
+            margin-bottom: 5px;
+            font-size: 12px;
         }
 
-        input,
-        select,
-        textarea {
+        .user-details .input-box input,
+        .user-details .input-box textarea {
+            height: 30px;
             width: 100%;
-            padding: 10px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        /* Optional: Add more styling based on your preferences */
-
-        #logo {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        /* Check Saved Details Button Styling */
-        .check-details-button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
+            outline: none;
+            font-size: 12px;
             border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            text-decoration: none;
-            display: inline-block;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
         }
 
-        .check-details-button:hover {
-            background-color: #0056b3;
+        .user-details .input-box textarea {
+            height: 60px;
+        }
+
+        .user-details .input-box input:focus,
+        .user-details .input-box input:valid {
+            /* border-color: #9b59b6; */
+            border-color: #796dcd;
+            ;
+
+        }
+
+        form .gender-details .gender-title {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        form .category {
+            display: flex;
+            width: 80%;
+            margin: 5px 0;
+            justify-content: space-between;
+        }
+
+        form .category label {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        form .category label .dot {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: #d9d9d9;
+            border: 5px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        #dot-1:checked~.category label .one,
+        #dot-2:checked~.category label .two,
+        #dot-3:checked~.category label .three {
+            background: #9b59b6;
+            border-color: #d9d9d9;
+        }
+
+        form input[type="radio"] {
+            display: none;
+        }
+
+        form .button {
+            height: 40px;
+            margin: 22px 0
+        }
+
+        form .button input {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
+        }
+
+        form .button input:hover {
+            /* transform: scale(0.99); */
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+
+        @media(max-width: 584px) {
+            .container {
+                max-width: 100%;
+            }
+
+            form .user-details .input-box {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
+            form .category {
+                width: 100%;
+            }
+
+            .content form .user-details {
+                max-height: 300px;
+                overflow-y: scroll;
+            }
+
+            .user-details::-webkit-scrollbar {
+                width: 5px;
+            }
+        }
+
+        @media(max-width: 459px) {
+            .container .content .category {
+                flex-direction: column;
+            }
+        }
+
+        .check-details-button {
+            display: flex;
+            justify-content: flex-end;
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <!-- Use the doctor background image -->
-        Varad Hospital - Patient Details
-    </header>
+    <div class="container">
+        <div class="title">Patient Details</div>
+        <div class="content">
+            <form method="post" action="{{ url_for('patient_details') }}">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span for="patient_name" class="details">Patient Name</span>
+                        <input type="text" id="patient_name" name="patient_name" placeholder="Enter patient name"
+                            required>
+                    </div>
+                    <!-- <div class="input-box">
+                        <span class="details">Patient last Name</span>
+                        <input type="text" id="patient_lname" name="patient_lname" placeholder="Enter patient last name"
+                            required>
+                    </div> -->
+                    <!-- <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" placeholder="Enter your email" required>
+                    </div> -->
+                    <!-- <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" placeholder="Enter your number" required>
+                    </div> -->
+                    <div class="input-box">
+                        <span class="details">Patient Age</span>
+                        <input type="number" id="patient_age" name="patient_age" min="1" placeholder="Enter patient age"
+                            required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Patient Symptoms</span>
+                        <textarea id="patient_symptoms" name="patient_symptoms"
+                            placeholder="Enter Patient Symptoms"></textarea>
 
-    <form method="post" action="{{ url_for('patient_details') }}">
-        <label for="patient_name">Patient Name:</label>
-        <input type="text" id="patient_name" name="patient_name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Medicine Details</span>
+                        <textarea id="medicine_details" name="medicine_details" required rows="4"
+                            placeholder="Enter Patient Address"></textarea>
 
-        <label for="patient_age">Patient Age:</label>
-        <input type="number" id="patient_age" name="patient_age" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Patient Address</span>
+                        <textarea id="patient_address" name="patient_address" required rows="4"
+                            placeholder="Enter Patient Address"></textarea>
 
-        <label for="patient_gender">Patient Gender:</label>
-        <select id="patient_gender" name="patient_gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Follow-up Date</span>
+                        <input type="date" id="follow_up_date" name="follow_up_date"
+                            placeholder="Enter Patient Address">
 
-        <label for="patient_address">Patient Address:</label>
-        <textarea id="patient_address" name="patient_address" rows="4" required></textarea>
+                    </div>
 
-        <label for="patient_symptoms">Patient Symptoms:</label>
-        <textarea id="patient_symptoms" name="patient_symptoms" rows="4" required></textarea>
+                </div>
+                <div class="gender-details">
+                    <input type="radio" name="patient_gender" id="dot-1" value="male">
+                    <input type="radio" name="patient_gender" id="dot-2" value="female">
+                    <input type="radio" name="patient_gender" id="dot-3" value="other">
+                    <span class="gender-title">Gender</span>
+                    <div class="category" id="patient_gender" name="patient_gender">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span class="gender">Other</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
 
-        <!-- Add fields for Medicine Details and Follow-up Date -->
-        <label for="medicine_details">Medicine Details:</label>
-        <textarea id="medicine_details" name="medicine_details" rows="4" required></textarea>
+            </form>
 
-        <label for="follow_up_date">Follow-up Date:</label>
-        <input type="date" id="follow_up_date" name="follow_up_date" required>
+            <div class="button">
+                <!-- "Check Saved Details" button -->
+                <a href="{{ url_for('all_patients') }}" class="check-details-button">
+                    Check Saved Details
+                </a>
+            </div>
+        </div>
+    </div>
 
-        <input type="submit" value="Submit">
-    </form>
-
-    <!-- "Check Saved Details" button -->
-    <a href="{{ url_for('all_patients') }}" class="check-details-button">
-        Check Saved Details
-    </a>
-
-    <!-- Add additional patient details or information here as needed -->
 
 </body>
+
 </html>
