@@ -1,10 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_file
 import sqlite3
 import pandas as pd
 from datetime import datetime
-from flask import send_from_directory
-from flask import send_file
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -96,7 +93,7 @@ def medicine_details(patient_id):
 
     return render_template('medicine_details.html', patient=patient)
 
-# Search route
+# Search route for ID or Name
 @app.route('/search', methods=['POST'])
 def search():
     search_query = request.form['search_query']
@@ -109,6 +106,8 @@ def search():
     connection.close()
 
     return render_template('all_patients.html', patients=patients)
+
+
 
 # Download patient details as Excel route with date range
 @app.route('/download_excel_date_range/<start_date>/<end_date>', methods=['GET'])
@@ -125,14 +124,8 @@ def download_excel_date_range(start_date, end_date):
         patients = cursor.fetchall()
         connection.close()
 
-        # Print patients to check if data is retrieved
-        print("Patients:", patients)
-
         # Create a DataFrame from the patient details
         df = pd.DataFrame(patients, columns=['ID', 'Name', 'Age', 'Gender', 'Address', 'Symptoms', 'Medicine Details', 'Follow-up Date'])
-
-        # Print DataFrame to check if data is present
-        print("DataFrame:", df)
 
         # Save the DataFrame to an Excel file
         excel_file_path = 'patient_details_date_range.xlsx'
