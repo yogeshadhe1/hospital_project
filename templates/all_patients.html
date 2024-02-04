@@ -21,7 +21,6 @@
             padding: 0;
         }
 
-
         .container {
             display: flex;
             align-items: center;
@@ -36,7 +35,6 @@
             background-color: #C7C5F4;
         }
 
-
         .details {
             width: 80%;
             max-width: 800px;
@@ -44,7 +42,6 @@
             display: flex;
             justify-content: flex-start;
             flex-direction: column;
-            */
         }
 
         #details-table {
@@ -55,13 +52,11 @@
             margin: 20px 0px;
         }
 
-
         #details-table th,
         #details-table td {
             text-align: left;
             padding: 12px;
             font-size: 14px;
-
         }
 
         #details-table tr {
@@ -87,7 +82,12 @@
 <body>
     <div class="details">
         <h1>All Patients</h1>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <!-- Search form for ID or Name -->
+        <form action="{{ url_for('search') }}" method="post">
+            <label for="search_query">Search by ID or Name:</label>
+            <input type="text" name="search_query" id="search_query" placeholder="Enter ID or Name">
+            <button type="submit">Search</button>
+        </form>
         <div class="container">
             <!-- Display patient details in table format -->
             <table border="1" id="details-table">
@@ -142,26 +142,6 @@
             </a>
         </footer>
     </div>
-    <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("details-table");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 </body>
 
 </html>
